@@ -2,7 +2,6 @@
 t = 0;
 let resp = "";
 var converter = new showdown.Converter();
-
 $(document).ready(function(){  
     $('#send').click(function(e){
         e.preventDefault();
@@ -19,7 +18,6 @@ $(document).ready(function(){
             "</div>"             
         );        
         window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
-        run(prompt);         
         $(".js-logo").addClass("active");
     });     
     $('#prompt').keypress(function(event){        
@@ -34,8 +32,6 @@ $(document).ready(function(){
 
 function run(prompt, action="/run") {
     function myTimer() {
-        $("#bot").removeClass("fa-solid fa-ghost");
-        $("#bot").addClass("spinner-border");
         t++;
     }
     const myInterval = setInterval(myTimer, 1000);          
@@ -47,8 +43,6 @@ function run(prompt, action="/run") {
         contentType:"application/json; charset=utf-8",
         dataType:"json",
         success: function(data){  
-            console.log("success")
-            console.log(data)          
             $("#printout").append(
                 "<div class='px-3 py-3'>" + 
                 "<div style='white-space: pre-wrap;'>" + 
@@ -59,8 +53,6 @@ function run(prompt, action="/run") {
             );           
         },
         error: function(data) {
-            console.log("error")
-            console.log(data)
             $("#printout").append(
                 "<div class='text-danger response-message'>" + 
                 "<div style='white-space: pre-wrap;'>" + 
@@ -71,12 +63,8 @@ function run(prompt, action="/run") {
             );              
         },
         complete: function(data) {
-            console.log("complete")
-            console.log(data)
             clearInterval(myInterval);
             t = 0;
-            $("#bot").addClass("fa-solid fa-ghost");
-            $("#bot").removeClass("spinner-border");         
             $(".js-loading").removeClass("spinner-border");                   
             window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
             hljs.highlightAll();                 
