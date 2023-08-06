@@ -61,8 +61,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 		schema.SystemChatMessage{Content: "Hello, I am a friendly AI assistant."},
 		schema.HumanChatMessage{Content: prompt.Input},
 	}
-
-	completion, err := llm.Call(context.Background(), chatmsg)
+	aimsg, err := llm.Call(context.Background(), chatmsg)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -72,7 +71,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 		Response string `json:"response"`
 	}{
 		Input:    prompt.Input,
-		Response: completion.GetContent(),
+		Response: aimsg.GetContent(),
 	}
 	json.NewEncoder(w).Encode(response)
 }

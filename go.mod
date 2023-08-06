@@ -1,4 +1,4 @@
-module github.com/sausheong/locago
+module github.com/sausheong/breeze
 
 go 1.20
 
