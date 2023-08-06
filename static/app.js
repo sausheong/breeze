@@ -18,6 +18,7 @@ $(document).ready(function(){
             "</div>"             
         );        
         window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
+        run(prompt);
         $(".js-logo").addClass("active");
     });     
     $('#prompt').keypress(function(event){        
