@@ -64,6 +64,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 	aimsg, err := llm.Call(context.Background(), chatmsg)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	response := struct {
